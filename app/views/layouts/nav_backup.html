@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to "Auction App", root_path %>
+        </li>      
+         <li>
+          <a href="#" class= "disabled">/</a>
+        </li>    
+        <li>
+          <%= link_to "Products", products_path %>
+        </li>  
+
+        <% if current_user %>
+          <li>
+            <a href="#" class= "disabled">/</a>
+          </li>  
+
+          <li>
+            <p><%= "#{current_user.email}" %></p>
+          </li>
+          <li>
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Sign in", new_user_session_path %>
+          </li>
+        <% end %>               
+      </ul>
+
+
+      <ul class="nav navbar-nav navbar-right">
+
+      </ul>
+
+
+    </div>
+  </div>
+</nav>

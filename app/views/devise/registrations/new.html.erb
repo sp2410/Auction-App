@@ -1,0 +1,149 @@
+<div class="row">
+<div class="w3-panel w3-card-2" style = "background-color: #fff; min-height: 700px;">
+    <div class="col-md-12 text-center">
+
+      <h1>Sign Up</h1>
+
+      <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+          <%= devise_error_messages! %>          
+
+          <div class="field"> 
+
+            <%= f.email_field :email, autofocus: true, :label => "Your Primary Email (*)" %>
+          </div>
+
+          <div class = "col-md-12 text-center">            
+
+            <h4 style="color:red;">We send email notifications whenever an auction goes live! Choose below if you want to receive notifications email. Depending Upon Your Email settings please check you spam box too! </h4>            
+
+          </div>
+
+          <div class="field"> 
+            <%= f.select :receiveemail, [['Yes', true], ['No', false]], :label => "Receive Notifications of New Auctions and Counter Offers" %>
+          </div>
+
+          <div class="field">
+            
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off" %>
+          </div>
+
+          <div class="field">   
+
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          </div>
+
+          <div class="field">
+            
+            <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, default: "Arizona" %>
+          </div>          
+
+          <div class = "col-md-12 text-center" style = "margin-bottom: 2%;">
+            <h4 style ="color:red;" >To Eliminate Fraud, We Verify Dealers Signining Up</h4>
+            <h4 style="color:red;" >We Request You Provide Us With Necessary Details So We Can Provide The Best Services</h4>
+          </div>
+
+          <div class="field">  
+
+            <%= f.text_field :name, :label => "Owner/Buyer Name (*)" %>
+          </div>
+          <div class="field">  
+
+            <%= f.text_field :dealer_Name, :label => "Dealership (*)" %>
+          </div>
+          <div class="field"> 
+
+            <%= f.text_field :address, :label => "Street Address (*)" %>
+          </div>
+          <div class="field"> 
+
+            <%= f.text_field :city, :label => "City (*)" %>
+          </div>
+          <div class="field"> 
+
+            <%= f.text_field :state, :label => "State (*)"  %>
+          </div>
+          <div class="field"> 
+
+            <%= f.text_field :zip, :label => "ZipCode (*)" %>
+          </div>
+          <div class="field"> 
+
+            <%= f.text_field :bond_Number %>
+          </div>
+          <div class="field">  
+
+            <%= f.text_field :dealer_Number, :label => "Dealer Number (*)"  %>
+          </div>
+          <div class="field"> 
+
+            <%= f.text_field :reseller_Number %>
+          </div>
+          <div class="field"> 
+
+            <%= f.text_field :primary_Phone, :label => "Primary Phone (*)"  %>
+          </div>
+
+          <div class = "col-md-12 text-center">            
+
+            <h4>For Mobile Notifications, please enter the following details (Leave Blank If You Don't Want To Receive Live Auction's Text Notifications )</h4>
+
+            <strong><p style = "color:red;">10 Digit Mobile Number Format: +13181139193 (No Non Numeric Please)</p></strong>
+
+          </div>
+          
+          <div class="field"> 
+
+            <%= f.text_field :mobile_Phone_Number, :label => "Mobile Phone Number(**)" %>
+          </div>          
+
+          <div class="field"> 
+
+            <%= f.select :mobile_Phone_Carrier, ['AT&T', 'MetroPCS', 'Nextel', 'Sprint', 'T-Mobile', 'Verizon', 'Onvoy/5 - Sybase365']  %>        
+          </div>
+
+          <div class = "col-md-12 text-center">                                                
+            <strong><p style = "color:red;"> **Message and data rates may apply. For help contact us. We never share your data with 3rd parties!</p></strong>
+          </div> 
+
+          <br>
+          <br>
+          <br>
+          
+          <div class = "col-md-12 text-center">                                                
+            <strong><p style = "color:green;"> To Help Us Make the Sales Team Performance Better, Please Fill in Who Referred You </p></strong>
+          </div> 
+
+           <div class="field"> 
+
+            <%= f.select :referredby, ['Inside Sales', 'Jeremy', 'Tom', 'Mike', 'Scott', 'Rich', 'Web Ad','Google', 'Referral: Dealership', 'Other'], :label => "Referred By" %>        
+          </div>
+       
+
+          <div class = "col-md-12 text-center">
+
+            <strong><h4 style = "color:red;">Note: Read Our Terms And Policies By <%= link_to "Clicking Here", policy_path,{:style=>'color:#57bc90;'} %> First. Please Read It Carefully Before Signing Up. 
+              <br><h4>
+              <strong><h4 style = "color:red;">A Registration Will Automatically Imply You Abiding By Our Terms And Policies For This App Use</h4></strong>
+
+          </div>
+
+         
+
+          
+
+          <div class="actions" style = "margin-bottom: 1%;">
+
+              <%= f.submit "Sign up", :class => 'btn btn-primary' %>
+          </div>    
+
+      <% end %>
+      <div class = "col-md-12 text-center">            
+            <%= render "devise/shared/links" %>
+      </div>
+    </div>
+</div>
+</div>

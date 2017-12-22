@@ -1,0 +1,367 @@
+.row{:style => "background: #fff;"}
+  .w3-panel.w3-card-2        
+    .col-md-12.text-center  
+      %h2{:style => "color: #57bc90;"}
+        #{@product.title.upcase}  
+  
+    .col-md-12.text-center{:style => "color: #57bc90;"}
+      .slideshow-container
+        - if @product.image.present?
+          #showpage.mySlides
+            = image_tag @product.image.url, style: " max-height: 100%; max-width: 100%; margin: auto;"
+        - else
+          #showpage.mySlides
+            = image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "TDC Auto Auction | Auction | Car | Live Bid", style: " max-height: 100%; max-width: 100%; margin: auto;")
+
+        - if @product.imagefront.present?
+          #showpage.mySlides
+            = image_tag @product.imagefront, style: " max-height: 100%; max-width: 100%; margin: auto;"
+        - else
+          #showpage.mySlides
+            = image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "TDC Auto Auction | Auction | Car | Live Bid", style: " max-height: 100%; max-width: 100%; margin: auto;")
+
+
+
+        - if @product.imageback.present?
+          #showpage.mySlides
+            = image_tag @product.imageback, style: " max-height: 100%; max-width: 100%; margin: auto;"
+        - else
+          #showpage.mySlides
+            = image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "TDC Auto Auction | Auction | Car | Live Bid", style: " max-height: 100%; max-width: 100%; margin: auto;")
+
+
+
+        - if @product.imageleft.present?
+          #showpage.mySlides
+            = image_tag @product.imageleft, style: " max-height: 100%; max-width: 100%; margin: auto;"
+        - else
+          #showpage.mySlides
+            = image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "TDC Auto Auction | Auction | Car | Live Bid", style: " max-height: 100%; max-width: 100%; margin: auto;")
+
+
+        - if @product.imageright.present?
+          #showpage.mySlides
+            = image_tag @product.imageright, style: " max-height: 100%; max-width: 100%; margin: auto;"
+        - else
+          #showpage.mySlides
+            = image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "TDC Auto Auction | Auction | Car | Live Bid", style: " max-height: 100%; max-width: 100%; margin: auto;")
+
+        - if @product.frontinterior.present?
+          #showpage.mySlides
+            = image_tag @product.frontinterior , style: " max-height: 100%; max-width: 100%; margin: auto;"
+        - else
+          #showpage.mySlides
+            = image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "TDC Auto Auction | Auction | Car | Live Bid", style: " max-height: 100%; max-width: 100%; margin: auto;")
+
+        - if @product.rearinterior.present?
+          #showpage.mySlides
+            = image_tag @product.rearinterior , style: " max-height: 100%; max-width: 100%; margin: auto;"
+        - else
+          #showpage.mySlides
+            = image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "TDC Auto Auction | Auction | Car | Live Bid", style: " max-height: 100%; max-width: 100%; margin: auto;")
+
+        %a.prev &#10094
+        %a.next &#10095
+        %div{:style => "text-align:center; "}
+          %span.dot
+          %span.dot
+          %span.dot
+          %span.dot
+          %span.dot
+          %span.dot
+          %span.dot
+
+      
+      %h3
+      - if (@product.user == current_user) and (@product.auction == nil)
+        = link_to 'EDIT VEHICLE', edit_product_path(@product, :class => "btn btn-primary")        
+      / - else
+      /   = link_to 'SHOW INTEREST', product_likes_path(@product), class: "btn btn-primary2"
+
+  .w3-panel.w3-card-2
+    .col-md-6.text-center
+      .glyphicon.glyphicon-camera        
+        %h5= link_to "Click To View/Add More Pictures of This Car", product_pictures_path(@product.id)
+  
+    .col-md-6.text-center
+      .glyphicon.glyphicon-user
+        %h5= link_to "Click Here To Contact Us For Vehicle Inspection", "mailto:TDCAutoAuction@TDCDigitalMedia.com?Subject=Vehicle%20Inquiry%20VIN#{@product.vin if @product.vin}"        
+        / %a{:href => "mailto:thedealerschoice@yahoo.com?Subject=Vehicle%20Inquiry", :target => "_top"} Contact For Vehicle Inspection
+        
+  .w3-panel.w3-card-2        
+    .col-md-12.text-center
+      - if @product.auction.present?
+        %p
+          Initial Price: $ #{@product.auction.value.to_i}
+      =render "auction"
+      =render "bid"
+
+
+  .w3-panel.w3-card-2   
+    .col-md-12.text-center 
+      %h2{:style => "color: #57bc90;"}
+        VEHICLE LOCATION
+    .col-md-4.text-center    
+      .glyphicon.glyphicon-map-marker
+        %p
+          %strong> City
+          \: #{@product.city}
+    .col-md-4.text-center
+      .glyphicon.glyphicon-map-marker
+        %p              
+          %strong> State
+          \: #{@product.state}
+    .col-md-4.text-center
+      .glyphicon.glyphicon-map-marker
+        %p              
+          %strong> Zipcode
+          \: #{@product.zipcode} 
+  
+ 
+  .w3-panel.w3-card-2
+    .col-md-12.text-center 
+      %h2{:style => "color: #57bc90;"}
+        DETAILS
+    .col-md-4.text-center
+      %p      
+        %strong> VIN 
+        \: #{@product.vin}                                      
+    .col-md-4.text-center                    
+      %p      
+        %strong> Miles
+        \: #{@product.miles}
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Drive
+        \: #{@product.drive}
+
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Engine Description
+        \: #{@product.enginedescription}                    
+    .col-md-4.text-center
+      %p              
+        %strong> Cylinder
+        \: #{@product.cylinder}                                           
+    .col-md-4.text-center              
+      %p      
+        %strong> Transmission
+        \: #{@product.transmission}                                  
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Fuel
+        \: #{@product.fuel}
+
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Exterior Color
+        \: #{@product.color} 
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Interior Color
+        \: #{@product.interiorcolor}
+
+  .w3-panel.w3-card-2
+    .col-md-12.text-center      
+      %h2{:style => "color: #57bc90;"}
+        OTHER OPTIONS                                               
+      %p
+        %strong> Trim
+        \: #{@product.trim} 
+      %p
+        %strong> Vehicle Options
+        \: #{@product.options}
+
+
+  .w3-panel.w3-card-2
+    .col-md-12.text-center
+      %h2{:style => "color: #57bc90;"} REQUIRED PAYMENT TYPE
+      .glyphicon.glyphicon-check
+        %p
+          - if @product.check_type
+            - if @product.check_type == 'All'
+              Accepts All Cashiers Check, Cash, Dealership Check and Floor Plan Check
+            - else
+              Check Type: #{@product.check_type}
+
+
+  .w3-panel.w3-card-2
+    .col-md-12.text-center
+      %h2{:style => "color: #57bc90;"}
+        CONDITIONS
+    .col-md-4.text-center
+      %p
+        %strong> Drives Condition
+        \: #{@product.drives_condition if @product.drives_condition}
+
+
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Runs Condition
+        \: #{@product.runs_condition if @product.runs_condition}
+
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Tires Condition
+        \: #{@product.tires_condition if @product.tires_condition}  
+
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Paint Condition
+        \: #{@product.paint_condition if @product.paint_condition}
+
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Windshield Condition
+        \: #{@product.windshield_condition if @product.windshield_condition}
+
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Interior Condition
+        \: #{@product.interior_condition if @product.interior_condition}
+
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Engine Light
+        \: #{@product.check_engine_light if @product.check_engine_light}
+
+    .col-md-4.text-center                                            
+      %p      
+        %strong> ABS Light
+        \: #{@product.ABS_light if @product.ABS_light}
+
+    .col-md-4.text-center                                            
+      %p      
+        %strong> Airbag Light
+        \: #{@product.Airbag_light if @product.Airbag_light}
+
+  .w3-panel.w3-card-2
+    .col-md-12.text-center
+      %h2{:style => "color: #57bc90;"}
+        VEHICLE CONDITION DESCRIPTION
+      - if @product.warranty.to_s == 'Buyer responsible for viewing vehicle before bidding. Sold in as-is condition with no warranty'
+        %p{:style => "color:red"}
+          = @product.warranty
+        %p
+          = @product.description
+      - else
+        %p{:style => "color:green"}
+          = @product.warranty
+        %p
+          = @product.description          
+
+  .w3-panel.w3-card-2
+    .col-sm-12.text-center{:style => " padding: 0px;"}
+      %h2{:style => "color: #57bc90;"}
+        SELLER RATING        
+        %br/ 
+        %p{:style => "display: inline;"}
+          = get_rating_in_star(Review.get_average_rating(@owner_id))
+        %hr/        
+      - if allowreviews(@product)  
+        = link_to 'Add A Review', new_user_review_path(@owner_id, :parent_id => @product.id), class: "btn btn-primary btn-xs", style: "border: #e20049; margin: 10px;"
+      - @reviews.each do |review|
+        %hr/
+        %p{:style => "display: inline;"} Rating:
+        = get_rating_in_star(review.rating)
+        %br/
+        %p{:style => "text-align: center;"}= review.comment if  review.comment
+        %p{:style => "text-align: center;"}
+        %span.glyphicon.glyphicon-user
+          = User.find_by_id(review.user_id).email if review.user_id
+        - if user_is_review_owner(review)
+          = link_to 'Edit', edit_user_review_path(User.find_by_id(review.owner_id), review, :parent_id =>@product.id, :parent_type => 'repairshop'), class: "btn btn-primary btn-xs", style: " border: #e20049; margin: 1.5px 0;"
+          = link_to 'Destroy', user_review_path(User.find_by_id(review.owner_id), review, :parent_id =>@product.id, :parent_type => 'repairshop'), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-xs", style: " border: #e20049; margin: 1.5px 0;"
+        %hr/
+
+
+
+:javascript
+  App = {
+    websocket_url: "ws://#{request.host}:#{request.port}/"
+  };
+
+  (function() {
+
+  init(); //on page load - show first slide, hidethe rest
+
+  function init() {
+  
+  parents = document.getElementsByClassName('slideshow-container');
+
+  for (j = 0; j < parents.length; j++) {
+  var slides = parents[j].getElementsByClassName("mySlides");
+  var dots = parents[j].getElementsByClassName("dot");
+  slides[0].classList.add('active-slide');
+  dots[0].classList.add('active');
+  }
+  }
+
+  dots = document.getElementsByClassName('dot'); //dots functionality
+
+  for (i = 0; i < dots.length; i++) {
+
+  dots[i].onclick = function() {
+
+  slides = this.parentNode.parentNode.getElementsByClassName("mySlides");
+
+  for (j = 0; j < this.parentNode.children.length; j++) {
+  this.parentNode.children[j].classList.remove('active');
+  slides[j].classList.remove('active-slide');
+  if (this.parentNode.children[j] == this) {
+  index = j;
+  }
+  }
+  this.classList.add('active');
+  slides[index].classList.add('active-slide');
+
+  }
+  }
+  
+  links = document.querySelectorAll('.slideshow-container a');
+
+  for (i = 0; i < links.length; i++) {
+  links[i].onclick = function() {
+  current = this.parentNode;
+
+  var slides = current.getElementsByClassName("mySlides");
+  var dots = current.getElementsByClassName("dot");
+  curr_slide = current.getElementsByClassName('active-slide')[0];
+  curr_dot = current.getElementsByClassName('active')[0];
+  curr_slide.classList.remove('active-slide');
+  curr_dot.classList.remove('active');
+  if (this.className == 'next') {
+
+  if (curr_slide.nextElementSibling.classList.contains('mySlides')) {
+  curr_slide.nextElementSibling.classList.add('active-slide');
+  curr_dot.nextElementSibling.classList.add('active');
+  } else {
+  slides[0].classList.add('active-slide');
+  dots[0].classList.add('active');
+  }
+
+  }
+
+  if (this.className == 'prev') {
+
+  if (curr_slide.previousElementSibling) {
+  curr_slide.previousElementSibling.classList.add('active-slide');
+  curr_dot.previousElementSibling.classList.add('active');
+  } else {
+  slides[slides.length - 1].classList.add('active-slide');
+  dots[slides.length - 1].classList.add('active');
+  }
+
+  }
+
+  }
+
+  }
+  })();
+
+  jQuery('#hideshow').on('click', function(event) {        
+         jQuery('.togglediv').toggle('show');
+    });
+
+
+  

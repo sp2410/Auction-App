@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="w3-panel w3-card-2">
+    <div class="col-md-12 text-center">
+		<h1 >GREAT! WE HAVE RECEIVED YOUR REQUEST TICKET FOR VEHICLE CLAIM</h1>
+		
+		<p>
+			We would soon send you an invoice request for buyer's premium charges and payments on the email you registered with for <%= (@netamount) %> Dollars
+		</p>
+		<br>
+		<p>
+			 Please also check you spam box as well
+		</p>
+		<br>
+		<p>
+			  After, we have processed your request and charged the premium, the vehicle will automatically be transferred to your vehicles page and you would receive all the dealers details needed
+		</p>
+		<br>
+
+		<p>
+			In case needed, Our Team is commited To Helping you Get in Touch With The Dealers <%= link_to "Click Here To Email Us For Vehicle Inspection", "mailto:TDCAutoAuction@TDCDigitalMedia.com?Subject=Vehicle%20Inquiry%20VIN#{@product.vin if @product.vin}" %> with subject line: Inquiry : VEHICLE VIN: <%= @product.vin %>  or Call Us: +1 866-338-7870 Extension: 5
+		</p>
+
+		</div>		
+	</div>
+	
+</div>

@@ -1,0 +1,2 @@
+module CounterOffersHelper
+end

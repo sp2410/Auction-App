@@ -1,0 +1,21 @@
+
+<div class="headerdiv" id = "search" >
+	<strong><h3 style = "margin-top: 10%; margin-bottom: 2%; text-align: center;"> FIND AN AUCTION NEAR YOU </h2></strong>		    
+	<div class="w3-panel w3-card" style = "margin-top: 2%;margin-bottom: 2%; margin-left:0px; margin-right:0px;min-height: 550px; ">   
+        <section class="formclass" style = "margin-top: 2%;margin-bottom: 2%;">
+            <%= form_tag search_products_path, method: :get, class: '' do |f| %>
+                <%= text_field_tag :location, nil, placeholder: 'VEHICLE CITY' %>        
+                <%= text_field_tag :radius, nil, placeholder: 'SEARCH RADIUS' %>                
+                <%= submit_tag 'SEARCH',class: "btn btn-primary2" %>
+            <% end %>    
+        </section>
+
+<strong><h5 style = "margin-top: 2%; margin-bottom: 2%; text-align: center; color: red;">SINGLE CLICK MARKERS ON THE MAP TO VIEW NEIGHBORING LISTINGS, DOUBLE CLICK TO VIEW LISTING</h5></strong>            
+  <%= render "products/auctionmap" %>
+
+
+    </div>    		
+</div>
+
+
+

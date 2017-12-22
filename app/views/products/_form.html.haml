@@ -1,0 +1,97 @@
+= bootstrap_form_for @product do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+      %ul
+        - @product.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.text_field :vin, :label => "VIN (*)", placeholder: "To Save Your Time, We Autofill Vehicle Details From The VIN"  
+
+  .field    
+    = f.text_field :name, :label => "Make (*)"
+
+  .field
+    = f.select :year, (Time.zone.now.year - 50)..(Time.zone.now.year + 1), :selected => '2017', :label => "Year (*)"    
+  .field
+    = f.text_field :model, :label => "Vehicle Model (*)"
+
+  .field
+    = f.text_field :cylinder, :label => "Cylinder (*)"
+
+  .field
+    = f.text_field :fuel, :label => "Fuel (*)"
+  .w3-panel.w3-card-2
+    %h4 We Recommend That Each Vehicle You Upload Have Atleast Five Images, You Can Add More Using Image Gallery After Save
+    .w3-panel.w3-card-2
+      .field    
+        = f.file_field :image, :label => "Upload Main Image"
+    .w3-panel.w3-card-2   
+      .field    
+        = f.file_field :imageleft, :label => "Upload Vehicle Image From Left"
+    .w3-panel.w3-card-2   
+      .field    
+        = f.file_field :imageright, :label => "Upload Vehicle Image From Right"
+    .w3-panel.w3-card-2        
+      .field    
+        = f.file_field :imagefront, :label => "Upload Vehicle Image From Front"            
+    .w3-panel.w3-card-2
+      .field    
+        = f.file_field :imageback, :label => "Upload Vehicle Image From Back"    
+    .w3-panel.w3-card-2
+      .field    
+        = f.file_field :rearinterior, :label => "Upload Vehicle Interior Image From Rear"    
+    .w3-panel.w3-card-2
+      .field    
+        = f.file_field :frontinterior, :label => "Upload Vehicle Interior Image From Front"                    
+
+  .field
+    = f.text_field :trim, :placeholder => "Vehicle Trim Level of Vehicle. For example: SLT, XLT, Lariat, or Special Edition", :label => "Vehicle Trim Level"
+
+  .field
+    = f.text_field :miles, :placeholder => "Vehicle miles if known. TMU if True Miles Are Unknown : Field Can't Be Blank"
+
+  .field
+    = f.text_area :enginedescription, :label => "Engine Description", placeholder: "Provide Engine Description"
+    
+  .field
+    = f.select :transmission, ['Automanual','Automatic','Automatic 4 Speed','Automatic 5 Speed','Automatic 6 Speed','CVT','Manual','Other'] 
+  .field
+    = f.select :drive, ['4X2/2 wheel drive','4X4/4 wheel drive','AWD','FWD','RWD','Other']    
+  .field
+    = f.select :color, ['Unspecified','Beige','Black','Charcoal','Blue','Brown','Gold','Gray','Green','Orange','Pink','Purple','Red','Silver','Tan','Teal','White','Yellow', 'Other'],  :label => "Exterior Color" 
+  .field
+    = f.select :interiorcolor, ['Unspecified','Beige','Black','Charcoal','Blue','Brown','Gold','Gray','Green','Orange','Pink','Purple','Red','Silver','Tan','Teal','White','Yellow', 'Other'], :label => "Interior Color"     
+  .field
+    = f.text_field :options, :placeholder => "Provide all factory and aftermarket vehicle options separated by a comma. For example: Power windows, Cruise, Ice cold A/C, Navigation", :label => "Vehicle Options"
+
+  .field
+    = f.text_area :description, placeholder: "Please describe detailed vehicle conditions. For example: Ice cold A/C, crack in windshield, paint faded, left front fender dented, door dings. Please detail and display pictures of these flaws. Any major misrepresentation can result in reversal of the sale and/ or restriction of selling privileges.", :label => "Description"     
+
+  .field
+    = f.select :check_type, ['All','Cash Only', 'Cashiers Check Only','Cashiers Check or Cash','Dealership Check','Floor Plan Check','Cash, Cashiers Check or Business Check','Cash, Cashiers Check, Business Check or Floor Plan Check','Cash or Cashiers Check','Other'], :placeholder => "Select Your Check Type for final payment", :label => "Payment Type" 
+
+  .field
+    = f.select :runs_condition, ['Poor','Fair','Good','Excellent'], :label => "Runs" 
+  .field
+    = f.select :drives_condition, ['Poor','Fair','Good','Excellent'], :label => "Drives" 
+  .field
+    = f.select :tires_condition, ['Poor','Fair','Good','Excellent'], :label => "tires" 
+  .field
+    = f.select :paint_condition, ['Poor','Fair','Good','Excellent'], :label => "Paint" 
+  .field
+    = f.select :windshield_condition, ['Poor','Fair','Good','Excellent'], :label => "Windshield" 
+  .field
+    = f.select :interior_condition, ['Poor','Fair','Good','Excellent'], :label => "Interior" 
+  .field
+    = f.select :check_engine_light, ['Off','On'], :label => "Engine Lights" 
+  .field
+    = f.select :ABS_light, ['Off','On'], :label => "ABS Lights" 
+  .field
+    = f.select :Airbag_light, ['Off','On'] , :label => "Airbag Lights" 
+  .field
+    = f.select :warranty, ['Buyer responsible for viewing vehicle before bidding. Sold in as-is condition with no warranty','Motor, tranny and rear end guaranteed for 48hrs (Vehicles being transported over 300 miles are guaranteed until 5pm on the Wednesday following the auction)'], :label => "Warranty Options"         
+
+
+  .actions
+    = f.submit 'Save', :class => "btn btn-primary"

@@ -1,0 +1,13 @@
+= form_for @counter_offer do |f|
+  - if @counter_offer.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@counter_offer.errors.count, "error")} prohibited this counter_offer from being saved:"
+      %ul
+        - @counter_offer.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :value
+    = f.number_field :value
+  .actions
+    = f.submit 'Save'

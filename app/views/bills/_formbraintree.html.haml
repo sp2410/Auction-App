@@ -1,0 +1,4 @@
+.w3-panel.w3-card-2
+  = bootstrap_form_for bill, :url => {:action => "create"} do |f|
+    #payment-form{:style => "margin-top: 10px;"}
+    %input.btn.btn-primary{:style => "margin-bottom: 10px;", :type => "submit", :value => "Pay Buyers Premium"}/

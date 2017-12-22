@@ -1,0 +1,17 @@
+%p#notice= notice
+
+.row
+  %h4
+    = link_to 'BACK TO CAR', @product, class: "btn btn-primary"  
+  .w3-panel.w3-card-2
+    .col-md-12.text-center
+      - if @picture.image.present?
+        = image_tag @picture.image.url(:thumb), height: 300        
+      - else
+        = image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "Used Car for auction", height: 300)
+      %h1= @picture.alias.upcase          
+      - if (@product.user == current_user)
+        = link_to 'Edit', edit_product_picture_path
+        |
+        = link_to 'Destroy', product_picture_path(@product, @picture), method: :delete, data: { confirm: 'Are you sure?' }
+

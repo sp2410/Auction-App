@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  transaction_id: 1
+  action: MyString
+  amount: 1
+  success: false
+  authorization: MyString
+  message: MyString
+  params: MyText
+
+two:
+  transaction_id: 1
+  action: MyString
+  amount: 1
+  success: false
+  authorization: MyString
+  message: MyString
+  params: MyText

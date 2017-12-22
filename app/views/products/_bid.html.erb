@@ -1,0 +1,44 @@
+<% if @product.has_auction? %>
+  <% if @product.auction.ended? %>
+    <%= render "auctions/status" %>
+  <% else %>
+    <%= form_for [ @product, @product.auction, Bid.new ] do |f| %>
+      <p class="message">
+        <strong>
+          <% if @product.auction.top_bid.present? %>
+            <% if @product.auction.top_bid.user_id == current_user.id %>
+              Current bid (By You): $              
+            <% else %>
+              You were outbid: $
+            <% end %>
+          <% else %>
+            Current bid: $
+          <% end %>
+          <%= @product.auction.current_bid.to_i %>
+        </strong>
+      </p>
+      <p>
+        Ends at: <%= "#{l(@product.auction.ends_at, format: :short)}" %>
+      </p>
+      <p>        
+        ($50 Increments Only)
+        <%= f.text_field :value %>
+        <%= f.button "Bid Now", class: "btn-xs btn-primary"%>
+      </p>
+    <% end %>
+  <% end %>
+  <script>
+    
+    $(function() {
+      var user_id = <%= "#{current_user.id}" %>;
+      var auction_id = <%= "#{@product.auction.id}" %>;
+      var form = $("#new_bid");
+      var auctionSocket = new AuctionSocket(
+        user_id,
+        auction_id,
+        form
+      );
+    });
+
+  </script>
+<% end %>

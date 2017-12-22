@@ -1,0 +1,156 @@
+<% if @product.auction.top_bid.present? %>
+	<p>Top Bid <%= @product.auction.top_bid.value.to_i %> $</p>
+	
+	<% if @product.auction.top_bid.user_id == current_user.id %>
+
+		<% if((@product.originaluser_id) != (current_user.id)) %>
+
+			<% if(@product.sellerselected_option == 1) %>		
+				<p>Congrats! You won the auction! </p>
+
+			  	<% if !(@product.paid) %>
+				  <p>
+					<%= link_to "CLAIM CAR AND GET DEALER INFO", new_product_bill_path(@product), class: "btn btn-primary", :style =>"color:#fff;" %>	    
+				  </p>
+				<% elsif @product.paid %>
+					<p> You Already Own this Car. Thank You For Letting Us Serve You! </p>
+				<% end %>			
+
+			<% elsif (@product.sellerselected_option == 2) %>
+				<!-- accept  couter offer -->
+				<% if !(@product.paid) %>
+				  <p>
+				  	The Owner Rejected The Highest Bid and Raised A Counter Offer of $ <%= @product.auction.counter_offer.value %> Click The Button Below If You Choose To Accept The Offer
+					<%= link_to "ACCEPT COUNTER OFFER AND GET DEALER INFO", acceptcounteroffer_product_path(@product), class: "btn btn-primary", :style =>"color:#fff;" %>	    
+				  </p>
+				<% elsif (@product.paid) and (@product.auction.counter_offer.winner_id == current_user.id ) %>
+					<p> You Already Own this Car. Thank You For Letting Us Serve You! </p>
+				<% elsif (@product.paid) and (@product.auction.counter_offer.winner_id != current_user.id ) %>
+					<p> Sorry! The Vehicle Has Been Sold By Counter Offer</p>
+				<% end %>	
+
+
+			<% elsif (@product.sellerselected_option == 0) %>		
+
+				<h4 style = "color: rgb(137,202,220)">The Owner Still Has to Accept The Maximum Bid Yet. They May Make A Counter Offer or Restart Auction altogether</h4>
+				<h4 style = "color:red">Note: If Counter Offer Is Raised, You Will Receive An Email. Email may go to your spam box depending upon your Email Settings. Please move our notification emails to your inbox for receiving emails and accepting counter offer</h4>	
+
+
+			<% end %>
+
+		<% elsif((@product.originaluser_id) == (current_user.id)) %>
+
+			<p> Oops! You are The Top Most Bidder On Your Own Car <br>Use The Button Below For Putting This Car On Auction Again </p>			
+			<%= link_to "RESTART AUCTION", putback_product_path(@product), class: "btn btn-primary", :style =>"color:#fff;" %>	    
+		<% end %>
+
+	<% elsif %>
+
+		<% if((@product.originaluser_id) == (current_user.id)) %>
+
+			<% if (@product.sellerselected_option == 0 ) %>		
+					<p>The Auction Has Ended!</p>
+					<p>Please Chooose One Option Below</p>
+
+					<%= link_to "ACCEPT HIGHEST BID", acceptbid_product_path(@product), class: "btn btn-primary", :style =>"color:#fff;" %>					
+					<%= link_to "RESTART AUCTION", putback_product_path(@product), class: "btn btn-primary", :style =>"color:#fff;" %>
+					<br>
+					<br>
+					 OR
+					<br>
+					<br>
+					<%= render "auctions/counteroffer" %>	 
+					<br>
+					<br>   			
+
+					<p> If You Need Any Help: <%= link_to "Click Here To Contact Us", "mailto:TDCAutoAuction@TDCDigitalMedia.com?Subject=Vehicle%20Inquiry%Direct%20VIN#{@product.vin if @product.vin}" %> For Direct Queries</p>
+
+			<% elsif (@product.sellerselected_option == 1 ) %>
+
+				<% if !(@product.paid) %>
+
+					<p>Please Wait! The Winner Is Yet To Claim The Vehicle</p>
+					<br>
+					<p>OR</p>
+					<br>
+					<%= link_to "CANCEL CLAIM AND START NEW AUCTION", putback_product_path(@product), class: "btn btn-primary", :style =>"color:#fff; margin-bottom:5px;" %>	
+
+				<% elsif (@product.paid) %>
+
+						<p>Congrats! The Auction Was Successful. We have Made Your Contact Details Available To The Highest Bidder </p>					
+
+				<% end %>	
+
+
+
+			<% elsif (@product.sellerselected_option == 2 ) %>
+				<% if (@product.auction.counter_offer.accepted_status == false) %>
+
+					<p>Please Wait Till A Buyer Accepts Your Offer!</p>
+					<br>
+					<p>OR</p>
+					<br>
+					<%= link_to "CANCEL COUNTER OFFER AND START NEW AUCTION", putback_product_path(@product), class: "btn btn-primary", :style =>"color:#fff; margin-bottom:5px;" %>	
+
+
+				<% else %>
+
+					<% if (@product.paid)%>
+
+						<p>Congrats! The Counter Offer Was accepted. We have Made Your Contact Details Available To The Highest Bidder</p>
+
+					<% elsif !(@product.paid)%>
+
+						<p>The Winner Is Yet To Claim The Vehicle </p>
+						
+						<p>OR</p>
+						
+						<%= link_to "CANCEL COUNTER CLAIM AND START NEW AUCTION", putback_product_path(@product), class: "btn btn-primary", :style =>"color:#fff; margin-bottom:5px;" %>
+
+					<% end %>
+
+				<% end %>			
+
+			<% end %>
+
+
+		<% else %>
+
+			<% if (@product.sellerselected_option == 2) %>
+
+				<!-- accept  couter offer -->
+				<% if !(@product.paid) %>
+				  <p>
+				  	The Owner Rejected The Highest Bid and Raised A Counter Offer of $ <%= @product.auction.counter_offer.value %> Click The Button Below If You Choose To Accept The Offer
+					<%= link_to "ACCEPT COUNTER OFFER AND GET DEALER INFO", acceptcounteroffer_product_path(@product), class: "btn btn-primary", :style =>"color:#fff;" %>	  
+
+				  </p>
+
+				<% elsif (@product.paid) and (@product.auction.counter_offer.winner_id == current_user.id ) %>
+					<p> You Already Own this Car. Thank You For Letting Us Serve You! </p>
+				<% elsif (@product.paid) and (@product.auction.counter_offer.winner_id != current_user.id ) %>
+					<p> Sorry! The Vehicle Has Been Sold By Counter Offer</p>
+				<% end %>
+
+			<% else %>
+
+				<p>Sorry! You lost the auction </p>
+
+			<%end%>
+
+		<%end%>
+
+	<% end %>	
+	
+
+<% else %>	
+	
+		<% if((@product.originaluser_id) == (current_user.id)) %>
+			<p> Sorry! No One Bid On This product</p>
+			<%= link_to "RESTART AUCTION", putback_product_path(@product), class: "btn btn-primary", :style =>"color:#fff; margin-bottom:5px;" %>		    
+		<% else %>
+			<p> Oops! No One Bid For This Product: <%= link_to "Click Here To Contact Us", "mailto:TDCAutoAuction@TDCDigitalMedia.com?Subject=Vehicle%20Inquiry%Direct%20VIN#{@product.vin if @product.vin}" %> For Direct Queries</p>
+		<% end %>
+
+<% end %>
+

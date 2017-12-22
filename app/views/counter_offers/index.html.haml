@@ -1,0 +1,25 @@
+/ %h1 Listing counter_offers
+
+/ %table
+/   %thead
+/     %tr
+/       %th Value
+/       %th Winner
+/       %th Accepted status
+/       %th
+/       %th
+/       %th
+
+/   %tbody
+/     - @counter_offers.each do |counter_offer|
+/       %tr
+/         %td= counter_offer.value
+/         %td= counter_offer.winner_id
+/         %td= counter_offer.accepted_status
+/         %td= link_to 'Show', counter_offer
+/         %td= link_to 'Edit', edit_counter_offer_path(counter_offer)
+/         %td= link_to 'Destroy', counter_offer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+/ %br
+
+/ = link_to 'New Counter offer', new_counter_offer_path

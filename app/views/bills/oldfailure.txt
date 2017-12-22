@@ -1,0 +1,43 @@
+<div class="row">
+
+	<div class="w3-panel w3-card-2">
+    	<div class="col-md-12 text-center">
+			<h1>SORRY! SOMETHING WENT WRONG</h1>
+
+			<h3>
+				This Vehicle wasn't successfully transferred To Your Vehicle List
+			</h3>
+		</div>		
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+  	<div class="w3-panel w3-card-2">
+    	<div class="col-md-12 text-center">		
+			<p>
+				We Cant Disclose Dealers Details As We could not charge your credit card with <%= (@netamount) %> Dollar Fees
+			</p>
+
+		</div>		
+	</div>
+	
+	<div class="w3-panel w3-card-2">
+    	<div class="col-md-12 text-center">		
+			<p>
+				We Apologise For The Inconvenience, Please Try Again later Or Contact us Directly Inquiring about Car VIN: <%= @product.vin %>
+				<%= link_to "Click Here To Email Us For Vehicle Inspection", "mailto:TDCAutoAuction@TDCDigitalMedia.com?Subject=Vehicle%20Inquiry%20VIN#{@product.vin if @product.vin}" %> with subject line: Inquiry : VEHICLE VIN: <%= @product.vin %>  or Call Us: +1 866-338-7870 Extension: 5
+			</p>		
+		</div>		
+	</div>
+
+	<div class="col-md-12 text-center">		
+		<%= link_to "TRY PAYMENT AGAIN", new_product_bill_path(@product), class: "btn btn-default" %>
+	</div>
+
+
+</div>
+

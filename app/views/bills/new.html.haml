@@ -1,0 +1,30 @@
+.row
+  .w3-panel.w3-card-2
+    .col-md-12.text-center
+      %strong
+        %h2{:style => "color: rgb(137,202,220);"} PLEASE ADD YOUR CREDIT CARD DETAILS
+      %h6 (Before We Disclose The Dealer Information We Need To Charge Your Credit Card For Service Fee. We Accept Any Valid Credit Card)
+      %br
+      %h4{:style => "color: red;"} WE CHARGE THE LOWEST FEE IN THE INDUSTRY!!
+      %p
+        = link_to "Click Here To View Fee Details ", pricing_path
+
+      %p Sale Price Less than $5000 = 100 USD
+      %p Sale Price between $5000 and $9999 = 200 USD  
+      %p Sale Price Over $9999 = 300 USD
+      %p We Use Paypal To Accept Credit Card Payments, For Your Security Your Card Information Is Never Stored
+      = render 'maualfom', bill: @bill
+
+
+      %strong
+  %h4{:style => "color: red;"} WE CHARGE THE LOWEST FEE IN THE INDUSTRY!!
+
+
+:javascript
+  var clientToken = "#{@token}"
+  
+  braintree.setup(clientToken, "dropin", {
+    container: "payment-form"
+  });
+
+  

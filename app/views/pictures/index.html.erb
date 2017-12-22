@@ -1,0 +1,36 @@
+<div class="headerdiv" id = "search">
+	<strong><h2 style = "margin-top: 10%; margin-bottom: 5%; text-align: center;"> GALLERY </h2></strong>
+
+		<h4>		
+			<%= link_to 'BACK TO LISTING', @product, class: "btn btn-primary" %>
+		</h4>		
+
+	<div class="row ">  
+
+	    <% @pictures.each do |picture| %>
+	      	      	 	      	
+	        <div class="w3-panel w3-card-2">
+	    		<div class="col-md-12 text-center">  
+	    		<h2 style = "font-size: 15px;"><%= picture.alias.upcase %></h2>
+		          <%= link_to product_picture_path(@product, picture) do %>
+		          	<% if picture.image.present? %>
+		            	<%= image_tag picture.image, height: 300 %>
+		            <% else %>
+		            	<%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "want a car buy a car", height: 80)  %>
+		          	<% end %>
+		          <% end %>
+		        </div>
+	        </div>
+	       
+	      
+	    <% end %>
+	</div>
+		
+
+	<% if (@product.user == current_user) %>
+		<h4>		
+			<%= link_to 'ADD NEW PICTURE', new_product_picture_path, class: "btn btn-primary" %>
+		</h4>
+	<% end %>
+</div>
+

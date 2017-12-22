@@ -1,0 +1,15 @@
+/ %p#notice= notice
+
+/ %p
+/   %b Value:
+/   = @counter_offer.value
+/ %p
+/   %b Winner:
+/   = @counter_offer.winner_id
+/ %p
+/   %b Accepted status:
+/   = @counter_offer.accepted_status
+
+/ = link_to 'Edit', edit_counter_offer_path(@counter_offer)
+/ \|
+/ = link_to 'Back', counter_offers_path

@@ -1,0 +1,53 @@
+<nav class="navbar">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="background: #57bc90;">
+        <span class="icon-bar" ></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+
+      <ul class="nav navbar-nav navbar-left">
+        <li>
+          <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", :alt => "TDC Auto Auction", :size => "40x40") %>          
+        </li>
+      </ul>
+    </div>
+
+    <div class="collapse navbar-collapse" id="myNavbar">      
+         <ul class="nav navbar-nav navbar-right">        
+        <li>
+          <%= link_to "HOME", root_path %>
+        </li>
+        <li>
+          <%= link_to 'LIST VEHICLE', new_product_path %>
+        </li>
+        <li>
+          <%= link_to "LIVE AUCTIONS", liveauction_path %>
+        </li>         
+        <li>
+          <%= link_to "PAST AUCTIONS", pastauction_path%>
+        </li>
+        <li>
+          <%= link_to "MY VEHICLES", purchases_path %>
+        </li> 
+        <li>
+          <%= link_to "MY BIDS", yourbids_path %>
+        </li>                               
+        <% if current_user %>
+          <li>
+            <%= link_to "PROFILE", edit_user_registration_path %>
+          </li>                     
+          <li>
+            <%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %>
+          </li>          
+        <% else %>
+          <li>
+            <%= link_to "SIGN IN", new_user_session_path %>
+          </li>
+        <% end %>                     
+      </ul>      
+    </div>
+  </div>
+</nav>

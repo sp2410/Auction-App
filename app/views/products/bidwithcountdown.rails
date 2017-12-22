@@ -1,0 +1,127 @@
+<% if @product.has_auction? %>
+  <% if @product.auction.ended? %>
+    <%= render "auctions/status" %>
+  <% else %>
+    <%= form_for [ @product, @product.auction, Bid.new ] do |f| %>
+      <p class="message">
+        <strong>
+          <% if @product.auction.top_bid.present? %>
+            <% if @product.auction.top_bid.user_id == current_user.id %>
+              Current bid (By You): $              
+            <% else %>
+              You were outbid: $
+            <% end %>
+          <% else %>
+            Current bid: $
+          <% end %>
+          <%= @product.auction.current_bid.to_i %>
+        </strong>
+      </p>      
+      <p>
+        Ends at: <%= "#{l(@product.auction.ends_at, format: :short)}" %>
+      </p>
+
+    <div class="w3-panel w3-card-2">
+      <div class="col-md-12 text-center"></div>
+        <strong><p id="demo" style = "color: red; font-size: 40px;" ></p></strong>
+        <strong><p id="demo2" style = "color: green; font-size: 15px;" ></p></strong>
+      </div>
+    </div>
+
+        
+      <p>        
+        ($50 Increments Only)
+        <%= f.text_field :value %>
+        <%= f.button "Bid Now", class: "btn btn-primary"%>
+      </p>
+    <% end %>
+  <% end %>
+
+
+<script>
+
+if (<%= "#{@product.has_auction?}" %>)
+{
+
+  // Set the date we're counting down to
+
+  var countDownDate = new Date("<%= @product.auction.ends_at.utc %>").getTime();
+
+  // Update the count down every 1 second
+  var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime()
+
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    
+
+    var element =  document.getElementById('demo');
+    var element =  document.getElementById('demo2');
+
+    if (typeof(element) != 'undefined' && element != null)
+    {
+
+
+      document.getElementById("demo").innerHTML = "Time Remaining: "+days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+      if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("demo").innerHTML = "Auction Ended";
+    }
+
+
+      
+    }
+
+    
+  }, 1000);
+
+
+  var element2 =  document.getElementById('demo2');
+
+    if (typeof(element2) != 'undefined' && element2 != null)
+    {
+      document.getElementById("demo2").innerHTML = "(Please Refresh Browser If Valid Bidding Doesn't Update)";
+
+    }
+
+
+ 
+}
+
+</script>
+
+
+  <script>
+    
+    $(function() {
+      var user_id = <%= "#{current_user.id}" %>;
+      var auction_id = <%= "#{@product.auction.id}" %>;
+      var form = $("#new_bid");
+      var auctionSocket = new AuctionSocket(
+        user_id,
+        auction_id,
+        form
+      );
+    });
+
+</script>
+
+
+
+<% end %>
+
+
+
+

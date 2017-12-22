@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="w3-panel w3-card-2">
+    <div class="col-md-12 text-center">
+		<h1 >CONGRATULATIONS! YOU HAVE SUCCESSFULLY TRANSFERRED THE VEHICLE TO YOUR INVENTORY LIST. VISIT MY VEHICLE TO SEE AUCTIONS WON</h1>
+		<h3>
+			We Have Successfully Charged Your Credit Card With <%= (@netamount) %> Dollars As Service Fee
+		</h3>
+
+		<p>
+			We Recommend That You Contact Us For Vehicle Collection Details
+		</p>
+
+		<p>
+			Our Team is commited To Helping you Get in Touch With The Dealers <%= link_to "Click Here To Email Us For Vehicle Inspection", "mailto:TDCAutoAuction@TDCDigitalMedia.com?Subject=Vehicle%20Inquiry%20VIN#{@product.vin if @product.vin}" %> with subject line: Inquiry : VEHICLE VIN: <%= @product.vin %>  or Call Us: +1 866-338-7870 Extension: 5
+		</p>
+
+		</div>		
+	</div>
+
+	<div class="w3-panel w3-card-2">
+    	<div class="col-md-12 text-center">
+
+			<h3>DEALER DETAILS</h3> 
+
+			<h6>Dealer Contact For Inquiry: <%= @dealer.email if @dealer.email %></h6>
+			<h6>Post Added By: <%= @dealer.name if @dealer.name %></h6>
+			<h6>Dealer Name: <%= @dealer.dealer_Name if @dealer.dealer_Name %></h6>
+			<h6>Dealer Address: <%= @dealer.address if @dealer.address %></h6>
+			<h6>Dealer City: <%= @dealer.city if @dealer.city %></h6>
+			<h6>Dealer State: <%= @dealer.state if @dealer.state %></h6>
+			<h6>Dealer Zip: <%= @dealer.zip if @dealer.zip %></h6>
+			<h6>Dealer Primary Phone : <%= @dealer.primary_Phone if @dealer.primary_Phone %></h6>
+			<h6>Dealer Mobile Phone: <%= @dealer.mobile_Phone_Number if @dealer.mobile_Phone_Number %></h6>		
+		</div>		
+	</div>
+</div>

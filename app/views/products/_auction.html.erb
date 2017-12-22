@@ -1,0 +1,24 @@
+<% if !(@product.has_auction?) %>
+  <% if (@product.user == current_user) %>
+    <h3>START AN AUCTION</h3>
+    
+    <%= form_for [ @product, Auction.new ] do |f| %> 
+
+      <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+        <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+            <p>        
+              <strong>Start Bid: $ </strong><%= f.text_field :value, :placeholder => " Minimum Amount or Zero" %>  |   <strong> Ends After: </strong><%= f.select :ends_at, options_for_select(ApplicationHelper::TIMER.map { |obj| [obj['time'], obj['val']] })%>
+              
+            </p> 
+        </div>  
+        <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: 2px auto ; ">
+          <%= f.button "Start Auction", class: "btn-xs btn-primary", style: "width: 50%;"  %>
+        </div>
+      </div>
+
+    <% end %> 
+  <% else %> 
+      <h3>The Owner is yet to start an auction</h3>
+  <% end %>  
+<% end %>
+

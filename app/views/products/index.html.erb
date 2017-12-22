@@ -1,0 +1,55 @@
+<% cache do %>
+<%= render "products/header" %>
+
+<div class="headerdiv" id = "search" >
+  <strong><h3 style = "margin-top: 10%; margin-bottom: 5%; text-align: center;"> OUR FEATURES </h2></strong>
+
+
+<div class = "center">
+
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 WHOLESALER TO DEALERS ONLY</p></Strong></div>
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 CONSISTENT SALES RATE OVER 70%</p></Strong></div>
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 LOWEST FEE FOR AUCTIONS</p></Strong></div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 FREE VEHICLE LISTING </strong></div>        
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 PAY ONLY WHEN YOU WIN </strong></div>
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 SEARCH BY YOUR REGION</strong></p></Strong></div>    
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 MOBILE & WEBSITE COMPATIBLE</strong></div>
+  
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 LIVE TEXT & EMAIL NOTIFICATIONS</p></Strong></div>
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 AUTOMATIC VEHICLE TRANSFERS</p></Strong></div>
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 NO LIMIT ON NUMBER OF LISTINGS</p></Strong></div>
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 CHOOSE YOUR AUCTION TIMELIMIT</p></Strong></div>
+    <div class="col-md-3 col-sm-6 col-xs-12"><Strong><p style = "color: #FF0000; margin: 0px 10px 10px 10px; text-align:center;" >&#x2714 SUPPORT TEAM FOR YOUR NEEDS</p></Strong></div>
+    
+</div>
+
+
+  <h4 class= "col-sm-12"  style = "margin-top: 8em;">
+    <%= link_to "PRODUCT GUIDELINES", guidelines_path, class: "btn btn-primary" %>
+  </h4>
+  <h4 class= "col-sm-12">
+    <%= link_to "FREQUENTLY ASKED QUESTIONS", faq_path, class: "btn btn-primary" %>
+  </h4>
+
+</div>
+
+
+<%= render "products/search" %>
+
+<% end %>
+
+<!-- <div class="headerdiv" id = "search">
+    <strong><h3 style = "margin-top: 10%; margin-bottom: 5%; text-align: center;"> PARTICIPATE IN A LIVE AUCTION </h2></strong>     
+    
+  <% if (@productsonauction.size == 0) %>
+  <div class = "col-sm-12 text-center ">
+    <strong><p>NO LIVE AUCTIONS RIGHT NOW! CHECK LATER</p></strong>   
+  </div>
+  <% else %>
+    <%= render "products/liveauctions" %>
+    <div class = "col-sm-12 text-center ">
+        <%= link_to "VIEW ALL", liveauction_path, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div> -->

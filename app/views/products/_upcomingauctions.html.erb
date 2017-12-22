@@ -1,0 +1,179 @@
+<div class="row ">  
+  <% if @productsnotonauction.present? %>
+      <% @productsnotonauction.each do |product| %>
+        <div class="card" >
+           
+          <h2 style = "font-size: 15px; color: #57bc90;"><%= product.title.upcase if product.title %></h2>
+
+          <div class = "card-img-top">
+            <%= link_to product do %>
+              <% if product.image.present? %>
+                <%= image_tag product.image.url(:thumb), height: 100 %>
+              <% else %>
+                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "want a car buy a car", height: 100)  %>
+              <% end %>
+            <% end %>
+          </div>
+
+        <%- if product.auction.ends_at > Time.now -%>
+            <div id ="ribbon">
+              <div id="txt">
+                 LIVE
+              </div>
+          </div>          
+        <% else %>
+            <%- if product.billed -%>
+                <div id ="ribbon3">
+                    <div id="txt2">
+                       BILLED
+                    </div>
+                </div>
+            <% else %>  
+              <div id ="ribbon2">
+                <div id="txt2">
+                  ENDED
+                </div>
+              </div>                
+            <% end %>
+        <% end %>
+
+
+
+         <div class="card-block">
+            
+            <p class="card-text" style = "font-size: 9px; color: black; ">
+              CAR MODEL:
+              <% if product.model.present? %>
+                 <%= product.model %>   
+              <% end %>           
+            </p>
+            
+              <%if product.auction.ends_at < Time.now %>
+                  <p style = "font-size: 9px; color: rgb(255,0,0);">Auction Has Ended</p>
+                  <p class="card-text" style = "font-size: 9px; ">
+                    Ended At: <%= l(product.auction.ends_at, format: :short)%>
+                  </p>
+                <% else %>
+                  <p style = "font-size: 9px; color: rgb(137,202,220);"> 
+                    Ends In: <%= distance_of_time_in_words(Time.now, product.auction.ends_at) %></p>  
+                  <p class="card-text" style = "font-size: 9px; ">
+                    Ends At: <%= l(product.auction.ends_at, format: :short) %>
+                  </p>
+                <% end %>             
+            <br>          
+             
+            <p class="card-text" style = "font-size: 15px; color: black; ">
+
+              <% if (product.sellerselected_option == 1) %>
+                  HIGH BID: $ <%= product.auction.top_bid.present? ? product.auction.top_bid.value.to_i : product.auction.current_bid.to_i %>
+              <% elsif (product.sellerselected_option == 2) %>
+                  COUNTER OFFER: $ <%= product.auction.counter_offer.value.to_i %>              
+              <% else %>
+                  HIGH BID: $ <%= product.auction.top_bid.present? ? product.auction.top_bid.value.to_i : product.auction.current_bid.to_i %>
+              <% end %>
+              
+            </p>
+            
+                   
+                                 
+
+            <br>
+                      
+            
+          <p class="card-text" style = "font-size: 9px; color: black; ">
+              Year: <%= product.year if product.year  %>
+          </p>
+            
+
+            
+          <p class="card-text" style = "font-size: 9px; color: black; ">
+              Miles: <%= product.miles if product.miles %>
+          </p>
+
+          <p class="card-text" style = "font-size: 9px; color: black; ">  
+              Color: <%= product.color if product.color  %>
+          </p>
+            
+        
+        <p class="card-text" style = "font-size: 9px; color: black; ">
+              Fuel: <%= product.fuel if product.fuel %>           
+          </p>
+            
+        
+          <p class="card-text" style = "font-size: 9px; color: black; ">              
+              City: <%= product.city if product.city  %>            
+          </p>
+            
+        
+          <p class="card-text" style = "font-size: 9px; color: black; ">
+              State: <%= product.state if product.state %>
+          </p>
+            
+            
+          <p class="card-text" style = "font-size: 9px; color: black; ">            
+              Cylinder: <%= product.cylinder if product.cylinder %>
+          </p>
+            
+        
+          <p class="card-text" style = "font-size: 9px; color: black; ">
+              Drive: <%= product.drive if product.drive %>
+          </p>
+            
+
+          
+          <p class="card-text" style = "font-size: 9px; color: black; ">  
+              Transmission: <%= product.transmission if product.transmission %>
+        </p>
+            
+            <br>
+
+          <p class="card-text" style = "font-size: 9px; color: black; ">
+              Runs Condition: <%= product.runs_condition if product.runs_condition %>
+          </p>
+            
+
+            
+          <p class="card-text" style = "font-size: 9px; color: black; ">
+              Tires Condition: <%= product.tires_condition if product.tires_condition %>          
+          </p>
+            
+
+          <p class="card-text" style = "font-size: 9px; color: black; ">
+              Paint Condition: <%= product.paint_condition if product.paint_condition  %>
+            </p>
+
+        <p class="card-text" style = "font-size: 9px; color: black; ">
+          Windshield Condition: <%= product.windshield_condition if product.windshield_condition %>
+          </p>
+            
+        <p class="card-text" style = "font-size: 9px; color: black; ">
+              Interior Condition: <%= product.interior_condition if product.interior_condition  %>
+            </p>
+
+            
+          <p class="card-text" style = "font-size: 9px; color: black; ">
+            Engine Light: <%= product.check_engine_light if product.check_engine_light %>
+        </p>
+            
+             
+          <p class="card-text" style = "font-size: 9px; color: black; ">          
+            ABS Light: <%= product.ABS_light if product.ABS_light %>
+          </p>
+            
+             
+          <p class="card-text" style = "font-size: 9px; color: black; ">          
+              Airbag Light: <%= product.Airbag_light if product.Airbag_light %>         
+          </p>
+            
+
+        </div>
+
+        </div>
+      <% end %>
+  <% elsif ((@productsnotonauction.empty? if @productsnotonauction)  or (@productsnotonauction == nil)) %>   
+      <strong><h3 style = "margin-top: 10%; margin-bottom: 5%; text-align: center;"> NO PAST AUCTIONS!PLEASE CHECK LATER</h3></strong>  
+  <% end %> 
+</div>
+
+
+

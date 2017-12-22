@@ -1,0 +1,47 @@
+= bootstrap_form_for bill, :url => {:action => "create"} do |f|
+  - if @bill.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@bill.errors.count, "error")} prohibited this bill from being saved:"
+      %ul
+        - @bill.errors.full_messages.each do |msg|
+          %li= msg
+  
+  .field
+    = f.text_field :first_name, :placeholder => "First Name", :label => "First Name(*)"
+  .field
+    = f.text_field :last_name, :placeholder => "Last Name", :label => "Last Name(*)"
+  .field
+    = f.select :card_type, [["Visa", "visa"], ["MasterCard","master"], ["Discover","discover"], ["American Express","american_express"]] , :label => "Card Type(*)"
+  .field
+    = f.text_field :card_number, :label => "Card Number(*)"
+  .field
+    = f.text_field :card_verification, :placeholder => "Three digit CVV Number at the Back of Your Card", :label => "CVV Number(*)"
+  .field
+    = f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true, :placeholder => "Expires On", :label => "Expires On(*)"
+
+  .field
+    = f.text_field :billing_full_name, :placeholder => "Billing Full Name", :label => "Billing Full Name(*)"
+  .field
+    = f.text_field :billing_street_address, :placeholder => "Billing Address", :label => "Billing Address(*)"
+  .field
+    = f.text_field :city, :placeholder => "Billing City", :label => "Billing City(*)"
+  .field
+    = f.select :state, [["AK", "AK"],["AL", "AL"],["AR", "AR"],["AZ", "AZ"],["CA", "CA"],["CO", "CO"],["CT", "CT"],["DC", "DC"],["DE", "DE"],["FL", "FL"],["GA", "GA"],["HI", "HI"],["IA", "IA"],["ID", "ID"],["IL", "IL"],["IN", "IN"],["KS", "KS"],["KY", "KY"],["LA", "LA"],["MA", "MA"],["MD", "MD"],["ME", "ME"],["MI", "MI"],["MN", "MN"],["MO", "MO"],["MS", "MS"],["MT", "MT"],["NC", "NC"],["ND", "ND"],["NE", "NE"],["NH", "NH"],["NJ", "NJ"],["NM", "NM"],["NV", "NV"],["NY", "NY"],["OH", "OH"],["OK", "OK"],["OR", "OR"],["PA", "PA"],["RI", "RI"],["SC", "SC"],["SD", "SD"],["TN", "TN"],["TX", "TX"],["UT", "UT"],["VA", "VA"],["VT", "VT"],["WA", "WA"],["WI", "WI"],["WV", "WV"],["WY", "WY"]], :label => "Billing City(*)"
+  .field
+    = f.text_field :country, :label => "Billing Country(*)"
+  .field
+    = f.text_field :zip, :placeholder => "Address Zipcode"
+
+  .actions
+    %button.btn.btn-primary{:type => "submit", :style => "margin-bottom: 10px;"}
+      %span.glyphicon.glyphicon-credit-card
+        PAY THROUGH PAYPAL
+
+
+
+
+    / = f.submit "PAY THROUGH PAYPAL", :class => "btn btn-primary", :style => "margin-bottom: 10px;"
+
+
+
+
