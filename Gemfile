@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-
+ruby '2.7.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails'
 
 
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+# gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -102,14 +102,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 
-group :development do 
+group :development do
 	# Use sqlite3 as the database for Active Record
 	gem 'sqlite3'
 
-	
+
 end
 
-group :production do 	
+group :production do
 	gem 'pg'
 	gem 'rails_12factor'
 	gem 'heroku-deflater'
